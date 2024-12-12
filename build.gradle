@@ -100,13 +100,16 @@ compileJava {
     dependsOn buildInfo
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 shadowJar {
     archiveBaseName.set('tw-agent')
     archiveClassifier.set('')
     archiveVersion.set('')
-    javaLauncher = javaToolchains.launcherFor {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
 }
 
 test {
