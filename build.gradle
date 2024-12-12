@@ -135,7 +135,6 @@ graalvmNative {
 
         test {
             verbose = true
-            agent = true
         }
     }
 }
