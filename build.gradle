@@ -92,25 +92,21 @@ task buildInfo {
     }
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
 compileJava {
-    options.release.set(17)
-}
-
-tasks.withType(GroovyCompile).configureEach {
+    options.release.set(21)
     sourceCompatibility = '17'
     targetCompatibility = '17'
+    options.compilerArgs += ["-Aproject=${project.name}"]
+    dependsOn buildInfo
 }
 
 shadowJar {
     archiveBaseName.set('tw-agent')
     archiveClassifier.set('')
     archiveVersion.set('')
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 test {
